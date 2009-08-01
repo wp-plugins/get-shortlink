@@ -1,5 +1,5 @@
 === Get Shortlink ===
-Contributors: gdragon
+Contributors: splicelicious
 Donate link: http://www.splicelicio.us/get-shortlink-wordpress-plugin
 Version: 1.1.9
 Requires at least: 2.7.0
