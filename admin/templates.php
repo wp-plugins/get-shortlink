@@ -70,7 +70,8 @@ function checkAll(form) {
 
     $tr_class = "";
     foreach ($tpl->templates as $t) {
-        echo '<tr id="tpl-'.$t->id.'" class="'.$tr_class.' author-self status-publish" valign="top">';
+		echo '<input type="hidden" name="richdefault" value="'.$t->id.'" />';
+        echo '<tr id="tpl-'.$t->id.'" class="'.$tr_class.' author-self status-publish" valign="top">';			
             echo '<td><input type="text" name="edit_item['.$t->id.'][name]" value="'.$t->name.'" /></td>';
             echo '<td>';
                 echo '<table class="rrptpl">';
