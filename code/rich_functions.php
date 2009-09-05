@@ -18,7 +18,7 @@ function get_closest_post($headline, $thumb_field) {
     global $wpdb;
     $response = new RichRelatedQuick();
     if ($headline != '') {
-        $sql = sprintf("select ID from %s where post_status = 'publish' and post_title like '%s' limit 0, 1", $wpdb->posts, "%".$headline."%");
+        $sql = $wpdb->prepare("select ID from %s where post_status = 'publish' and post_title like '%s' limit 0, 1", $wpdb->posts, "%".$headline."%");
         $id = intval($wpdb->get_var($sql));
         if ($id > 0) {
             $response->id = $id;

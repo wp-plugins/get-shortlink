@@ -3,9 +3,9 @@
 <thead>
     <tr class="header">
         <td><strong>Group Editor</strong></td>
-        <td class="headbutton"><a href="javascript:addElement(0)"><div class="rrpbutton rrpadd">Add Element</div></a></td>
-        <td class="headbutton"><a href="javascript:saveGroup('save')"><div id="rrpbtsave" class="rrpbutton rrpsave">Save Group</div></a></td>
-        <td class="headbutton"><a href="javascript:saveGroup('saveas')"><div id="rrpbtsaveas" class="rrpbutton rrpsave">Save As New</div></a></td>
+        <td class="headbutton"><a href="javascript:addElement(0, '<?php echo wp_create_nonce('rrp_nonce'); ?>')"><div class="rrpbutton rrpadd">Add Element</div></a></td>
+        <td class="headbutton"><a href="javascript:saveGroup('save', '<?php echo wp_create_nonce('rrp_nonce'); ?>')"><div id="rrpbtsave" class="rrpbutton rrpsave">Save Group</div></a></td>
+        <td class="headbutton"><a href="javascript:saveGroup('saveas', '<?php echo wp_create_nonce('rrp_nonce'); ?>')"><div id="rrpbtsaveas" class="rrpbutton rrpsave">Save As New</div></a></td>
     </tr>
 </thead>
     <tr>

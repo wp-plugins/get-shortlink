@@ -16,8 +16,8 @@ foreach ($groups->groups as $group) {
         echo '<td class="tdleft"><strong>['.$group->id.']</strong> <span id="rrpgname-'.$group->id.'">'.$group->name.'</span></td>';
         echo '<td class="tdright">';
             echo '<a href="javascript:insertShortcode('.$group->id.')" title="Insert Shortcode"><img src="'.RICHRELATED_URL.'gfx/insert.png" /></a>';
-            echo '<a href="javascript:deleteGroup('.$group->id.')" title="Delete Group"><img src="'.RICHRELATED_URL.'gfx/delete.png" /></a>';
-            echo '<a href="javascript:editGroup('.$group->id.')" title="Edit Group"><img src="'.RICHRELATED_URL.'gfx/edit.png" /></a>';
+            echo '<a href="javascript:deleteGroup('.$group->id.', \''.wp_create_nonce('rrp_nonce').'\')" title="Delete Group"><img src="'.RICHRELATED_URL.'gfx/delete.png" /></a>';
+            echo '<a href="javascript:editGroup('.$group->id.', \''.wp_create_nonce('rrp_nonce').'\')" title="Edit Group"><img src="'.RICHRELATED_URL.'gfx/edit.png" /></a>';
         echo '</td>';
     echo '<tr>';
     if ($tr_class == "") $tr_class = "alternate ";
