@@ -1,14 +1,26 @@
-= Get Shortlink Lite =
+=== Rich Related Posts ===
 
 == Change Log ==
+= Version: 1.0.5 [SVN rev_19, 1.2.2009.] =
+  * new: headline search similar to url search
+  * fix: few small bugs
 
-=== Version: 1.2.0 / july 8 2009 ===
-  * edit: upgraded rendering
-  * fix: several small bugs
+= Version: 1.0.3 [SVN rev_18, 27.1.2009.] =
+  * new: settings panel
+  * new: limit number of posts
+  * new: insert into html editor
 
-=== Version: 1.1.0 / july 8 2009 ===
-  * new: firendly url prefix
-  * fix: loading of jquery
+= Version: 1.0.2 [SVN rev_16, 25.1.2009.] =
+  * new: auto keyword search
+  * edit: top level menu
+  * edit: default template
 
-=== Version: 1.0.0 / july 7 2009 ===
-  * new: first release
+= Version: 1.0.1 [SVN rev_14, 19.1.2009.] =
+  * edit: few small changes
+
+= Version: 1.0.0 [SVN rev_13, 19.1.2009.] =
+  * new: search for posts and images
+  * new: resizing images
+
+= Version: 0.8.0 [SVN rev_9, 18.1.2009.] =
+  * first release

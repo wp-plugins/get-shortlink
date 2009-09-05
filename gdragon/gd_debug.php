@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    gdDebugGESH
+Name:    gdDebug
 Version: 1.0.5
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
@@ -26,11 +26,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('gdDebugGESH')) {
+if (!class_exists('gdDebug')) {
     /**
      * Class for saving debug dumps into file.
      */
-    class gdDebugGESH {
+    class gdDebug {
         var $log_file;
         var $active = false;
 
@@ -39,7 +39,7 @@ if (!class_exists('gdDebugGESH')) {
          *
          * @param string $log_url
          */
-        function gdDebugGESH($log_url = '') {
+        function gdDebug($log_url = '') {
             $this->log_file = $log_url;
 
             if ($this->log_file != '') {
@@ -47,14 +47,6 @@ if (!class_exists('gdDebugGESH')) {
                     $this->active = true;
                 }
             }
-        }
-
-        /**
-         * Truncates log file to zero lenght deleting all data inside.
-         */
-        function truncate() {
-            $f = fopen($this->log_file, "w+");
-            fclose($f);
         }
 
         /**

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    gdFunctionsGESH
+Name:    gdFunctions
 Version: 1.0.5
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
@@ -26,39 +26,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('gdFunctionsGESH')) {
-    class gdFunctionsGESH {
-        function get_image_from_text($text) {
-            $imageurl = "";
-            preg_match('/<\s*img [^\>]*src\s*=\s*[\""\']?([^\""\'>]*)/i', $text, $matches);
-            $imageurl = $matches[1];
-            return $imageurl;
-        }
-
-        function get_folder_files_count($path) {
-            if (!file_exists($path))
-                return 0;
-            if (is_file($path))
-                return filesize($path);
-            $ret = 0;
-            foreach(glob($path."/*") as $fn)
-                $ret++;
-
-            return $ret;
-        }
-
-        function get_folder_size($path) {
-            if (!file_exists($path))
-                return 0;
-            if (is_file($path))
-                return filesize($path);
-            $ret = 0;
-            foreach(glob($path."/*") as $fn)
-                $ret += gdFunctionsGESH::get_folder_size($fn);
-
-            return $ret;
-        }
-
+if (!class_exists('gdFunctions')) {
+    class gdFunctions {
         /**
          * Scans the folder and returns all the files and folder in it.
          *
@@ -86,7 +55,7 @@ if (!class_exists('gdFunctionsGESH')) {
          * @return array founded folders in array
          */
         function get_folders($path) {
-            $folders = gdFunctionsGESH::scan_dir($path);
+            $folders = gdFunctions::scan_dir($path);
             $import = array();
             foreach ($folders as $folder) {
                 if (substr($folder, 0, 1) != ".") {
@@ -129,22 +98,6 @@ if (!class_exists('gdFunctionsGESH')) {
                 else $result[$name] = $default;
             }
             return $result;
-        }
-
-        function size_format($size) {
-            if (strlen($size) <= 9 && strlen($size) >= 7) {
-                $size = number_format($size / 1048576,1);
-                return "$size MB";
-            }
-            elseif (strlen($size) >= 10) {
-                $size = number_format($size / 1073741824,1);
-                return "$size GB";
-            }
-            elseif (strlen($size) <= 6 && strlen($size) >= 4) {
-                $size = number_format($size / 1024,1);
-                return "$size KB";
-            }
-            else return "$size B";
         }
 
         function recalculate_size($size) {
@@ -234,21 +187,6 @@ if (!class_exists('gdFunctionsGESH')) {
             return $col;
         }
 
-        /**
-         * Checks if the php is running in safe mode.
-         *
-         * @return bool
-         */
-        function php_in_safe_mode() {
-            return (@ini_get("safe_mode") == 'On' || @ini_get("safe_mode") === 1) ? TRUE : FALSE;
-        }
-
-        /**
-         * Returns mySQL version.
-         *
-         * @param bool $full return full version string or only main version number
-         * @return string mySQL version
-         */
         function mysql_version($full = false) {
             if ($full)
                 return mysql_get_server_info();
@@ -256,22 +194,11 @@ if (!class_exists('gdFunctionsGESH')) {
                 return substr(mysql_get_server_info(), 0, 1);
         }
 
-        /**
-         * Returns true/false if the mysql is older than 4.1
-         *
-         * @return bool mySQL older than 4.1 returns true
-         */
         function mysql_pre_4_1() {
             $mysql = str_replace(".", "", substr(mysql_get_server_info(), 0, 3));
             return $mysql < 41;
         }
 
-        /**
-         * Returns PHP version.
-         *
-         * @param bool $full return full version string or only main version number
-         * @return string PHP version
-         */
         function php_version($full = false) {
             if ($full)
                 return phpversion();
@@ -279,54 +206,10 @@ if (!class_exists('gdFunctionsGESH')) {
                 return substr(phpversion(), 0, 1);
         }
 
-        /**
-         * Adds slashes to a string if not already added.
-         *
-         * @param string $input Input string
-         * @return string Result
-         */
         function add_slashes($input) {
             if (get_magic_quotes_gpc()) return $input;
             else return addslashes($input);
         }
     }
-
-    if (!function_exists("is_odd")) {
-        function is_odd($number) {
-            return $number&1;
-        }
-    }
 }
-
-if (!class_exists("gdSortObjectsArray")) {
-    class gdSortObjectsArray {
-        var $properties;
-        var $sorted;
-
-        function gdSortObjectsArray($objects_array, $properties = array()) {
-            if (count($properties) > 0) {
-                $this->properties = $properties;
-                usort($objects_array, array(&$this, 'array_compare'));
-            }
-            $this->sorted = $objects_array;
-        }
-
-        function array_compare($one, $two, $i = 0) {
-            $column = $this->properties[$i]["property"];
-            $order = $this->properties[$i]["order"];
-
-            if ($one->$column == $two->$column) {
-                if ($i < count($this->properties) - 1) {
-                    $i++;
-                    return $this->array_compare($one, $two, $i);
-                } else return 0;
-            }
-            if (strtolower($this->order) == "asc")
-                return ($one->$column < $two->$column) ? -1 : 1;
-            else
-                return ($one->$column < $two->$column) ? 1 : -1;
-        }
-    }
-}
-
 ?>
